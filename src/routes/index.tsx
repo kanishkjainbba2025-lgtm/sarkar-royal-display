@@ -109,6 +109,8 @@ const trust = [
 function ProductPage() {
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
+  const main = gallery[active] ?? gallery[0]!;
+
 
   return (
     <div className="min-h-screen bg-background">
