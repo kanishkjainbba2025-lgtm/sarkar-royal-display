@@ -53,15 +53,45 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "product" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
+    links: [
+      {
+        rel: "preload",
+        as: "image",
+        href: img1sm,
+        imageSrcSet: `${img1sm} 640w, ${img1} 1024w`,
+        imageSizes: "(max-width: 1024px) 100vw, 560px",
+        fetchPriority: "high",
+      },
+    ],
   }),
   component: ProductPage,
 });
 
 const gallery = [
-  { src: img1, alt: "Sarkar Regal crown-shaped deep purple 100ml perfume bottle" },
-  { src: img3, alt: "Sarkar Regal purple outer box with gold typography beside the bottle" },
-  { src: img2, alt: "Sarkar Regal matte black and purple cylindrical gift box" },
-  { src: img4, alt: "Close-up of the gold crown cap of Sarkar Regal" },
+  {
+    src: img1,
+    sm: img1sm,
+    xs: img1xs,
+    alt: "Sarkar Regal crown-shaped deep purple 100ml perfume bottle",
+  },
+  {
+    src: img3,
+    sm: img3sm,
+    xs: img3xs,
+    alt: "Sarkar Regal purple outer box with gold typography beside the bottle",
+  },
+  {
+    src: img2,
+    sm: img2sm,
+    xs: img2xs,
+    alt: "Sarkar Regal matte black and purple cylindrical gift box",
+  },
+  {
+    src: img4,
+    sm: img4sm,
+    xs: img4xs,
+    alt: "Close-up of the gold crown cap of Sarkar Regal",
+  },
 ];
 
 const profile = [
