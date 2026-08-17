@@ -22,10 +22,18 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-import img1 from "@/assets/regal-1.jpg";
-import img2 from "@/assets/regal-2.jpg";
-import img3 from "@/assets/regal-3.jpg";
-import img4 from "@/assets/regal-4.jpg";
+import img1 from "@/assets/regal-1-1024.webp";
+import img1sm from "@/assets/regal-1-640.webp";
+import img1xs from "@/assets/regal-1-200.webp";
+import img2 from "@/assets/regal-2-1024.webp";
+import img2sm from "@/assets/regal-2-640.webp";
+import img2xs from "@/assets/regal-2-200.webp";
+import img3 from "@/assets/regal-3-1024.webp";
+import img3sm from "@/assets/regal-3-640.webp";
+import img3xs from "@/assets/regal-3-200.webp";
+import img4 from "@/assets/regal-4-1024.webp";
+import img4sm from "@/assets/regal-4-640.webp";
+import img4xs from "@/assets/regal-4-200.webp";
 
 export const Route = createFileRoute("/")({
   head: () => ({
