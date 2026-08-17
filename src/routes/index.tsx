@@ -108,7 +108,7 @@ function ProductPage() {
               ))}
             </div>
 
-            <div className="flex-1 overflow-hidden rounded-sm bg-muted">
+            <div className="flex-1 self-start overflow-hidden rounded-sm bg-muted">
               <img
                 src={(gallery[active] ?? gallery[0]!).src}
                 alt={(gallery[active] ?? gallery[0]!).alt}
