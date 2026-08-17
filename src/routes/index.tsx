@@ -53,7 +53,7 @@ const gallery = [
   { src: img1, alt: "Sarkar Regal crown-shaped deep purple 100ml perfume bottle" },
   { src: img3, alt: "Sarkar Regal purple outer box with gold typography beside the bottle" },
   { src: img2, alt: "Sarkar Regal matte black and purple cylindrical gift box" },
-  { src: img4, ativo: undefined, alt: "Close-up of the gold crown cap of Sarkar Regal" },
+  { src: img4, alt: "Close-up of the gold crown cap of Sarkar Regal" },
 ];
 
 const profile = [
@@ -110,8 +110,8 @@ function ProductPage() {
 
             <div className="flex-1 overflow-hidden rounded-sm bg-muted">
               <img
-                src={gallery[active].src}
-                alt={gallery[active].alt}
+                src={(gallery[active] ?? gallery[0]!).src}
+                alt={(gallery[active] ?? gallery[0]!).alt}
                 width={1024}
                 height={1024}
                 className="aspect-square w-full object-cover"
