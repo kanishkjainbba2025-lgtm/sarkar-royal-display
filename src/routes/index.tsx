@@ -135,11 +135,12 @@ function ProductPage() {
                   }`}
                 >
                   <img
-                    src={g.src}
+                    src={g.xs}
                     alt={g.alt}
                     loading="lazy"
-                    width={1024}
-                    height={1024}
+                    decoding="async"
+                    width={200}
+                    height={200}
                     className="h-full w-full object-cover"
                   />
                 </button>
@@ -148,10 +149,16 @@ function ProductPage() {
 
             <div className="flex-1 self-start overflow-hidden rounded-sm bg-muted">
               <img
-                src={(gallery[active] ?? gallery[0]!).src}
-                alt={(gallery[active] ?? gallery[0]!).alt}
+                key={main.src}
+                src={main.sm}
+                srcSet={`${main.sm} 640w, ${main.src} 1024w`}
+                sizes="(max-width: 1024px) 100vw, 560px"
+                alt={main.alt}
                 width={1024}
                 height={1024}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
                 className="aspect-square w-full object-cover"
               />
             </div>
