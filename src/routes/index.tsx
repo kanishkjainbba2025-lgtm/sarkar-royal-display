@@ -42,7 +42,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Sarkar Regal Parfum 100ml — a sweet Oud & Amber parfum with 10-12 hour longevity. ₹1,199 (40% off). Free express shipping across India.",
+          "Sarkar Regal Parfum 100ml — a sweet Oud & Amber parfum with 10-12 hour longevity. ₹2,000. Free express shipping across India.",
       },
       { property: "og:title", content: "Sarkar Regal Parfum (100ml) — Sweet Oud & Amber" },
       {
@@ -183,11 +183,7 @@ function ProductPage() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-end gap-3">
-              <span className="text-4xl font-bold tracking-tight text-foreground">₹1,199</span>
-              <span className="pb-1 text-lg text-muted-foreground line-through">₹1,999</span>
-              <span className="mb-1.5 rounded-sm bg-burgundy px-2.5 py-1 text-[11px] font-semibold tracking-[0.1em] text-ink-foreground uppercase">
-                Save 40%
-              </span>
+              <span className="text-4xl font-bold tracking-tight text-foreground">₹2,000</span>
             </div>
             <p className="mt-1.5 text-xs text-muted-foreground">Inclusive of all taxes</p>
 
