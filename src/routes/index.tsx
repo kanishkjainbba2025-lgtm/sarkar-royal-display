@@ -9,7 +9,9 @@ import {
   Plus,
   ShieldCheck,
   Star,
+  ShoppingBag,
   Truck,
+  X,
 } from "lucide-react";
 
 import { SiteHeader } from "@/components/SiteHeader";
@@ -106,15 +108,37 @@ const trust = [
   { Icon: ShieldCheck, label: "Secure Checkout" },
 ];
 
+const productPrice = 2000;
+
 function ProductPage() {
   const [active, setActive] = useState(0);
   const [qty, setQty] = useState(1);
+  const [cartQty, setCartQty] = useState(0);
+  const [cartOpen, setCartOpen] = useState(false);
+  const [checkoutStarted, setCheckoutStarted] = useState(false);
   const main = gallery[active] ?? gallery[0]!;
+  const cartTotal = cartQty * productPrice;
 
+  const addToCart = () => {
+    setCartQty(qty);
+    setCheckoutStarted(false);
+    setCartOpen(true);
+  };
+
+  const buyNow = () => {
+    setCartQty(qty);
+    setCheckoutStarted(false);
+    setCartOpen(true);
+  };
+
+  const updateCartQuantity = (nextQty: number) => {
+    setCartQty(Math.max(0, nextQty));
+    setCheckoutStarted(false);
+  };
 
   return (
     <div className="min-h-screen bg-background">
-      <SiteHeader />
+      <SiteHeader cartQuantity={cartQty} onCartClick={() => setCartOpen(true)} />
 
       <main className="mx-auto max-w-7xl px-4 py-8 md:px-8 md:py-14">
         <p className="mb-8 text-[11px] tracking-[0.18em] text-muted-foreground uppercase">
@@ -231,10 +255,10 @@ function ProductPage() {
             </div>
 
             <div className="mt-6 space-y-3">
-              <Button variant="ink" size="xl" className="w-full">
+              <Button variant="ink" size="xl" className="w-full" onClick={addToCart}>
                 Add to Cart
               </Button>
-              <Button variant="royal" size="xl" className="w-full">
+              <Button variant="royal" size="xl" className="w-full" onClick={buyNow}>
                 Buy it Now
               </Button>
             </div>
@@ -281,6 +305,118 @@ function ProductPage() {
           </section>
         </div>
       </main>
+
+      {cartOpen && (
+        <div className="fixed inset-0 z-[60]">
+          <button
+            aria-label="Close cart"
+            className="absolute inset-0 bg-ink/40"
+            onClick={() => setCartOpen(false)}
+          />
+          <aside
+            role="dialog"
+            aria-modal="true"
+            aria-label="Shopping cart"
+            className="absolute top-0 right-0 flex h-full w-full max-w-md flex-col bg-background p-6 shadow-2xl"
+          >
+            <div className="flex items-center justify-between border-b border-border pb-5">
+              <div>
+                <p className="text-[11px] tracking-[0.18em] text-royal uppercase">Your selection</p>
+                <h2 className="mt-1 text-2xl font-semibold">Shopping Bag</h2>
+              </div>
+              <button
+                aria-label="Close cart"
+                className="rounded-sm p-2 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                onClick={() => setCartOpen(false)}
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            {cartQty > 0 ? (
+              <div className="flex flex-1 flex-col">
+                <div className="flex gap-4 py-6">
+                  <img
+                    src={img1xs}
+                    alt="Sarkar Regal perfume bottle"
+                    width={80}
+                    height={80}
+                    className="h-20 w-20 rounded-sm bg-muted object-cover"
+                  />
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-semibold">Sarkar Regal Parfum</h3>
+                    <p className="mt-1 text-sm text-muted-foreground">100ml · ₹2,000 each</p>
+                    <div className="mt-4 flex items-center justify-between">
+                      <div className="flex items-center rounded-sm border border-border">
+                        <button
+                          aria-label="Decrease cart quantity"
+                          className="p-2 transition-colors hover:text-royal"
+                          onClick={() => updateCartQuantity(cartQty - 1)}
+                        >
+                          <Minus className="h-4 w-4" />
+                        </button>
+                        <span className="w-8 text-center text-sm font-semibold tabular-nums">{cartQty}</span>
+                        <button
+                          aria-label="Increase cart quantity"
+                          className="p-2 transition-colors hover:text-royal"
+                          onClick={() => updateCartQuantity(cartQty + 1)}
+                        >
+                          <Plus className="h-4 w-4" />
+                        </button>
+                      </div>
+                      <span className="font-semibold">₹{cartTotal.toLocaleString("en-IN")}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-auto border-t border-border pt-5">
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>Shipping</span>
+                    <span className="font-medium text-foreground">Free</span>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between text-lg font-bold">
+                    <span>Total</span>
+                    <span>₹{cartTotal.toLocaleString("en-IN")}</span>
+                  </div>
+
+                  {checkoutStarted ? (
+                    <div className="mt-5 rounded-sm border border-royal/30 bg-royal/10 p-4 text-sm leading-relaxed">
+                      Checkout is ready. Your order total is ₹{cartTotal.toLocaleString("en-IN")}.
+                      Payment processing can be connected to your preferred provider next.
+                    </div>
+                  ) : (
+                    <Button
+                      variant="royal"
+                      size="xl"
+                      className="mt-5 w-full"
+                      onClick={() => setCheckoutStarted(true)}
+                    >
+                      Proceed to Checkout
+                    </Button>
+                  )}
+                  <button
+                    className="mt-4 w-full text-center text-xs font-medium tracking-wide text-muted-foreground underline-offset-4 hover:text-royal hover:underline"
+                    onClick={() => setCartOpen(false)}
+                  >
+                    Continue shopping
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div className="flex flex-1 flex-col items-center justify-center text-center">
+                <ShoppingBag className="h-10 w-10 text-royal" />
+                <h3 className="mt-4 text-lg font-semibold">Your bag is empty</h3>
+                <p className="mt-2 max-w-xs text-sm text-muted-foreground">
+                  Add Sarkar Regal to your bag to begin checkout.
+                </p>
+                <Button variant="royal" className="mt-5" onClick={() => setCartOpen(false)}>
+                  Continue Shopping
+                </Button>
+              </div>
+            )}
+          </aside>
+        </div>
+      )}
 
       <SiteFooter />
     </div>
