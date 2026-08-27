@@ -9,7 +9,12 @@ const links = [
   "Offers",
 ];
 
-export function SiteHeader() {
+export interface SiteHeaderProps {
+  cartQuantity?: number;
+  onCartClick?: () => void;
+}
+
+export function SiteHeader({ cartQuantity = 0, onCartClick }: SiteHeaderProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -49,9 +54,17 @@ export function SiteHeader() {
           <button aria-label="Account" className="p-2 text-foreground transition-colors hover:text-royal">
             <User className="h-[18px] w-[18px]" />
           </button>
-          <button aria-label="Cart" className="relative p-2 text-foreground transition-colors hover:text-royal">
+          <button
+            aria-label={cartQuantity ? `Open cart with ${cartQuantity} item${cartQuantity === 1 ? "" : "s"}` : "Open cart"}
+            className="relative p-2 text-foreground transition-colors hover:text-royal"
+            onClick={onCartClick}
+          >
             <ShoppingBag className="h-[18px] w-[18px]" />
-            <span className="absolute top-1.5 right-1.5 h-2 w-2 rounded-full bg-burgundy ring-2 ring-background" />
+            {cartQuantity > 0 && (
+              <span className="absolute top-0.5 right-0.5 flex h-4 min-w-4 items-center justify-center rounded-full bg-burgundy px-1 text-[9px] font-bold text-white ring-2 ring-background">
+                {cartQuantity}
+              </span>
+            )}
           </button>
         </div>
       </div>
