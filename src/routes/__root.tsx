@@ -95,6 +95,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         name: "google-site-verification",
         content: "BduWQUoBXs80XelYEm5MAuntAVXePykcLih2jD-Skig",
       },
+      {
+        name: "google-site-verification",
+        content: "LhzfiNoTaneCY4EBXQkKFbwO3jK0-eBttxOXW-sC2ho",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
