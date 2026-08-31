@@ -77,14 +77,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Sarkar Regal Parfum (100ml) — Sweet Oud & Amber" },
+      {
+        name: "description",
+        content:
+          "Sarkar Regal Parfum 100ml — a sweet Oud & Amber parfum with 10-12 hour longevity. Free express shipping across India.",
+      },
+      { property: "og:title", content: "Sarkar Regal Parfum (100ml) — Sweet Oud & Amber" },
+      {
+        property: "og:description",
+        content: "The ultimate party & date night fragrance. Smoky Oud, Amber and Vanilla.",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Sarkar Parfums" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
+      {
+        name: "google-site-verification",
+        content: "BduWQUoBXs80XelYEm5MAuntAVXePykcLih2jD-Skig",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
